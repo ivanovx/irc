@@ -8,7 +8,7 @@ import pro.ivanov.util.packet.response.ResponseType;
 
 import java.io.IOException;
 
-public class ReceiveThread extends Thread {
+public class ReceiveThread implements Runnable {
 
     private Connection connection;
     private boolean running = true;
@@ -23,6 +23,7 @@ public class ReceiveThread extends Thread {
             try {
                 String data = connection.getDataInputStream().readUTF();
                 String[] splitted = data.split(PacketManager.DELIMITER, 3);
+
                 if (splitted[0].equalsIgnoreCase(PacketManager.RESPONSE_IDENTIFIER)) {
                     ResponseType type = ResponseType.byId(splitted[1]);
                     // If that response type doesn't exist, we can safely ignore it.

@@ -1,6 +1,5 @@
 package pro.ivanov.server.commander.command;
 
-import com.duplxey.javasimpleirc.server.commander.command.commands.*;
 import pro.ivanov.server.commander.command.commands.*;
 import pro.ivanov.server.irc.IRCServer;
 

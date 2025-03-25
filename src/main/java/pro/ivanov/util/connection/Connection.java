@@ -1,9 +1,9 @@
 package pro.ivanov.util.connection;
 
+import org.apache.logging.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
 import pro.ivanov.util.packet.request.Request;
 import pro.ivanov.util.packet.response.Response;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
@@ -11,9 +11,9 @@ import java.io.IOException;
 import java.net.Socket;
 
 public abstract class Connection {
-
     private Socket socket;
-    private Logger logger = LoggerFactory.getLogger(Connection.class);
+
+    private Logger logger = LogManager.getLogger(Connection.class);
 
     private long establishedStamp;
     private DataInputStream dataInputStream;
@@ -29,14 +29,18 @@ public abstract class Connection {
     private void init() {
         logger.debug("Initialized a connection.");
         establishedStamp = System.currentTimeMillis();
+
         try {
             dataInputStream = new DataInputStream(socket.getInputStream());
             dataOutputStream = new DataOutputStream(socket.getOutputStream());
         } catch (IOException e) {
             e.printStackTrace();
         }
+
         receiveThread = new ReceiveThread(this);
-        receiveThread.start();
+        //receiveThread.start();
+
+        Thread.ofVirtual().start(receiveThread);
     }
 
     public void request(Request request) {

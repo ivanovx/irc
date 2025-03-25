@@ -1,44 +1,37 @@
 package pro.ivanov.server.irc;
 
-import pro.ivanov.util.file.ConfigFile;
-import pro.ivanov.util.file.YamlConfiguration;
+import java.util.Map;
 
 public class IRCServerSettings {
-
-    private YamlConfiguration config;
+    private final Map<String, String> config;
 
     public IRCServerSettings() {
-        init();
-    }
-
-    private void init() {
-        ConfigFile file = new ConfigFile("config.yml");
-        config = file.getConfig();
-        if (file.isNew()) {
-            config.setString("name", "<server_name>");
-            config.setString("description", "<server_description>");
-            config.setString("motd", "<server_motd>");
-            config.setInt("port", 5422);
-        }
+        this.config = Map.ofEntries(
+                Map.entry("name", "server_name"),
+                Map.entry("description", "<server_description>"),
+                Map.entry("motd", "<server_motd>"),
+                Map.entry("port", "5422")
+        );
     }
 
     public String getName() {
-        return config.getString("name");
+        return config.get("name");
     }
 
     public String getDescription() {
-        return config.getString("description");
+        return config.get("description");
     }
 
     public String getMOTD() {
-        return config.getString("motd");
+        return config.get("motd");
     }
 
     public void setMOTD(String motd) {
-        config.setString("motd", motd);
+        config.remove("motd");
+        config.put("motd", motd);
     }
 
     public int getPort() {
-        return config.getInt("port");
+        return Integer.parseInt(config.get("port"));
     }
 }

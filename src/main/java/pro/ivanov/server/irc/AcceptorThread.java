@@ -1,18 +1,18 @@
 package pro.ivanov.server.irc;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import pro.ivanov.util.connection.Connection;
 import pro.ivanov.util.packet.request.Request;
 import pro.ivanov.util.packet.request.RequestType;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 import java.io.IOException;
 import java.net.Socket;
 
-public class AcceptorThread extends Thread {
+public class AcceptorThread implements Runnable {
 
     private IRCServer ircServer;
-    private Logger logger = LoggerFactory.getLogger(AcceptorThread.class);
+    private Logger logger = LogManager.getLogger(AcceptorThread.class);
 
     private boolean running = true;
 
@@ -26,6 +26,7 @@ public class AcceptorThread extends Thread {
         
         while (running) {
             Socket socket = null;
+
             try {
                 socket = ircServer.getServerSocket().accept();
                 logger.info("Accepted a connection from " + socket.getRemoteSocketAddress() + ".");

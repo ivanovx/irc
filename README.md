@@ -1,2 +1,1 @@
-# irc
-IRC Server
+# IRC

@@ -1,12 +1,12 @@
 package pro.ivanov.server.irc.channel;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import pro.ivanov.server.irc.ServerConnection;
 import pro.ivanov.util.packet.Message;
 import pro.ivanov.util.packet.PacketManager;
 import pro.ivanov.util.packet.response.Response;
 import pro.ivanov.util.packet.response.ResponseType;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 import java.util.LinkedHashMap;
 import java.util.LinkedList;
@@ -14,7 +14,7 @@ import java.util.LinkedList;
 public class Channel {
 
     private String name;
-    private Logger logger = LoggerFactory.getLogger(Channel.class);
+    private Logger logger = LogManager.getLogger(Channel.class);
 
     private LinkedHashMap<String, ServerConnection> clients = new LinkedHashMap<>();
     private LinkedList<Message> messageHistory = new LinkedList<>();

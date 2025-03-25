@@ -17,8 +17,7 @@ public enum ResponseType {
 
     USERNAME("US"),
 
-    MESSAGE("ME"),
-    ;
+    MESSAGE("ME");
 
     private String id;
 
@@ -36,6 +35,7 @@ public enum ResponseType {
                 return responseType;
             }
         }
+
         return null;
     }
 }

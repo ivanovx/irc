@@ -10,15 +10,12 @@ public enum RequestType {
     CHANNEL_CONNECT("CC"),
     CHANNEL_SEND_MESSAGE("CSM"),
 
-    FETCH_USERNAME("FU"),
-
-    ;
+    FETCH_USERNAME("FU");
 
     private String id;
 
     RequestType(String id) {
         this.id = id;
-
     }
 
     public String getId() {
@@ -31,6 +28,7 @@ public enum RequestType {
                 return requestType;
             }
         }
+
         return null;
     }
 }
