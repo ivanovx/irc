@@ -1,7 +1,7 @@
 package pro.ivanov.server.irc;
 import org.apache.logging.log4j.Logger;
 import org.apache.logging.log4j.LogManager;
-import pro.ivanov.server.Main;
+//import pro.ivanov.server.Main;
 import pro.ivanov.server.irc.channel.Channel;
 import pro.ivanov.server.irc.channel.ChannelManager;
 //import pro.ivanov.util.file.FileUtil;
